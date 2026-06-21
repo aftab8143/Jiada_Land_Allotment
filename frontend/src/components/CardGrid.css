@@ -1,0 +1,264 @@
+.cards-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #003087;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #FF9933;
+  border-radius: 2px;
+}
+
+.section-header p {
+  color: #5a6a7a;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dde4ee;
+  border-top: 4px solid #003087;
+  border-radius: 6px;
+  padding: 1.5rem 1.25rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 48, 135, 0.12);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #003087;
+  margin: 0;
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: #5a6a7a;
+  line-height: 1.6;
+  flex: 1;
+  margin: 0;
+}
+
+.card-link {
+  background: none;
+  border: none;
+  color: #0047AB;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.5rem;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.card-link:hover {
+  color: #FF9933;
+}
+
+/* Info Boxes */
+.info-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.info-box {
+  background: #fff;
+  border: 1px solid #dde4ee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.info-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f4f7fb;
+  border-bottom: 1px solid #dde4ee;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #003087;
+}
+
+.info-box-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.info-box-dot.saffron { background: #FF9933; }
+.info-box-dot.green   { background: #138808; }
+.info-box-dot.blue    { background: #003087; }
+
+/* Announcements */
+.announcements ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.announcements li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.announcements li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ann-date {
+  font-size: 0.72rem;
+  color: #FF9933;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ann-text {
+  font-size: 0.85rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Quick Links */
+.quick-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quick-links li {
+  font-size: 0.875rem;
+  color: #0047AB;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #f0f4f8;
+  transition: color 0.2s;
+}
+
+.quick-links li:hover {
+  color: #FF9933;
+}
+
+.quick-arrow {
+  color: #138808;
+  font-size: 0.7rem;
+  margin-right: 0.4rem;
+}
+
+/* Helpline */
+.helpline-content {
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+
+.helpline-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #003087;
+  letter-spacing: 1px;
+}
+
+.helpline-sub {
+  font-size: 0.75rem;
+  color: #138808;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.2rem;
+}
+
+.helpline-divider {
+  border: none;
+  border-top: 1px dashed #dde4ee;
+  margin: 0.75rem 0;
+}
+
+.helpline-info {
+  font-size: 0.82rem;
+  color: #5a6a7a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .info-boxes {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .helpline {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-boxes {
+    grid-template-columns: 1fr;
+  }
+
+  .helpline {
+    grid-column: auto;
+  }
+}
