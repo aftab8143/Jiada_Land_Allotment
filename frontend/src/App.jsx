@@ -1,32 +1,14 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import Dashboard from './pages/Dashboard';
-
-const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" replace />;
-};
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { NotificationProvider } from './context/NotificationContext';
+import AppRoutes from './router';
 
 const App = () => (
-  <BrowserRouter>
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+  <BrowserRouter> {/* enables page navigation (URLs like /dashboard) */}
+    <AuthProvider> {/* holds "is the user logged in?" for everyone */}
+      <NotificationProvider> {/* holds notifications for everyone */}
+        <AppRoutes /> {/* the actual pages */}
+      </NotificationProvider>
     </AuthProvider>
   </BrowserRouter>
 );

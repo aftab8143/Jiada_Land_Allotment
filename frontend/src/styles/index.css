@@ -1,0 +1,117 @@
+/* ─── Tailwind v4 entry + JIADA design tokens ───────────────────────────── */
+@import "tailwindcss";
+
+/* ── Poppins font faces (from kkfrontend assets) ── */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-ExtraLight.ttf') format('truetype');
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Black.ttf') format('truetype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+/* ── Design Tokens ── */
+@theme {
+  /* Fonts */
+  --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+
+  /* JIADA Government brand */
+  --color-primary:        #003087;
+  --color-primary-dark:   #002060;
+  --color-primary-light:  #0047AB;
+  --color-primary-lightest: #286FB4;
+  --color-primary-50:     #eff6ff;
+  --color-primary-100:    #dbeafe;
+
+  --color-accent:         #FF9933;
+  --color-accent-dark:    #e8871c;
+  --color-accent-light:   #fff7ed;
+
+  --color-gov-green:      #138808;
+  --color-gov-green-bg:   #f0fdf4;
+
+  /* kkfrontend inspired palette */
+  --color-teal:           #45B7B2;
+  --color-teal-dark:      #3AA09C;
+  --color-teal-bg:        #F0FAF9;
+  --color-coral:          #EE7C71;
+  --color-coral-dark:     #dd6b61;
+  --color-navy:           #222533;
+  --color-lime:           #A6CB53;
+  --color-lime-light:     #B9E458;
+  --color-kk-yellow:      #FCBF2B;
+  --color-kk-purple:      #6C74F5;
+  --color-kk-orange:      #F79247;
+
+  /* App surface */
+  --color-bg:             #f4f7fb;
+  --color-card:           #ffffff;
+  --color-border:         #e5e7eb;
+  --color-border-strong:  #d1d5db;
+
+  /* Spacing extras */
+  --spacing-sidebar: 240px;
+  --spacing-navbar:  64px;
+}
+
+/* ── Global base overrides ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #f4f7fb; }
+::-webkit-scrollbar-thumb  { background: #d1d5db; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* ── Selection colour ── */
+::selection { background: rgba(0, 48, 135, 0.15); color: #003087; }
+
+/* ── Tricolour stripe helper ── */
+.tricolor-stripe {
+  height: 5px;
+  background: linear-gradient(to right, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%);
+}
+
+/* ── kkfrontend-style pill button shine arc ── */
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 20%; left: 12%;
+  width: 32%; height: 45%;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  pointer-events: none;
+  transform: rotate(-20deg);
+}
+
+/* ── Keyframe animations ── */
+@keyframes spin     { to { transform: rotate(360deg); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shake    { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes pulseRing { 0%{box-shadow:0 0 0 0 currentColor} 70%{box-shadow:0 0 0 6px transparent} 100%{box-shadow:0 0 0 0 transparent} }

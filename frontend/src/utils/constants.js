@@ -1,0 +1,43 @@
+export const APPLICATION_STATUS = {
+  DRAFT: 'DRAFT',
+  SUBMITTED: 'SUBMITTED',
+  UNDER_SCRUTINY: 'UNDER_SCRUTINY',
+  DEFICIENT: 'DEFICIENT',
+  UNDER_BIDDING: 'UNDER_BIDDING',
+  APPROVED: 'APPROVED',
+  DEMAND_ISSUED: 'DEMAND_ISSUED',
+  ALLOTTED: 'ALLOTTED',
+  REJECTED: 'REJECTED',
+  WITHDRAWN: 'WITHDRAWN',
+};
+
+export const PLOT_STATUS = {
+  AVAILABLE: 'AVAILABLE',
+  UNDER_PROCESS: 'UNDER_PROCESS',
+  ALLOTTED: 'ALLOTTED',
+  SURRENDERED: 'SURRENDERED',
+};
+
+export const USER_ROLES = {
+  APPLICANT: 'APPLICANT',
+  COUNTER_CLERK: 'CC',
+  IEO: 'IEO',
+  DO_RDD: 'DO_RDD',
+  REGIONAL_DIRECTOR: 'RD',
+  ACCOUNTS: 'ACCOUNTS',
+  ADMIN: 'ADMIN',
+  MIS: 'MIS',
+};
+
+export const INDUSTRY_CATEGORIES = [
+  'Manufacturing',
+  'IT & Electronics',
+  'Pharmaceutical',
+  'Agro-based',
+  'Textile',
+  'Auto Components',
+  'Food Processing',
+  'Other',
+];
+
+export const SLA_DAYS = 75;
