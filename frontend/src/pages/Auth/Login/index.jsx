@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import api from '../../../api/axios';
 import jharLogo from '../../../assets/images/jharlogo.png';
+import * as authApi from "../../../api/auth";
 
 const inputClass =
   'w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 bg-white transition-all';
@@ -10,7 +11,7 @@ const inputClass =
 const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -20,10 +21,15 @@ const LoginPage = () => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
     try {
-      const { data } = await api.post('/auth/login', form);
+      const { data } = await authApi.login(form);
       login(data.token, data.user);
+
+      alert(data.message);
+
       navigate('/dashboard');
+
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
     } finally {
@@ -75,15 +81,15 @@ const LoginPage = () => {
               )}
 
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-medium text-gray-700">Email Address</label>
+                <label className="text-xs font-medium text-gray-700">Username</label>
                 <input
-                  type="email"
-                  name="email"
-                  value={form.email}
+                  type="username"
+                  name="username"
+                  value={form.username}
                   onChange={handleChange}
                   placeholder="you@example.com"
                   required
-                  autoComplete="email"
+                  autoComplete="username"
                   className={inputClass}
                 />
               </div>
@@ -91,7 +97,7 @@ const LoginPage = () => {
               <div className="flex flex-col gap-1">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-medium text-gray-700">Password</label>
-                  <a href="#" className="text-xs text-accent hover:underline">Forgot password?</a>
+                  {/* <a href="#" className="text-xs text-accent hover:underline">Forgot password?</a> */}
                 </div>
                 <input
                   type="password"
@@ -108,16 +114,16 @@ const LoginPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-primary text-white rounded-full py-3 font-bold text-sm hover:bg-primary-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed mt-1"
+                className="w-full bg-primary text-white rounded-full py-3 font-bold text-sm hover:bg-primary-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed mt-1 cursor-pointer"
               >
                 {loading ? 'Signing in...' : 'Sign In'}
               </button>
             </form>
 
             <p className="text-sm text-gray-500 text-center mt-5">
-              Don&apos;t have an account?{' '}
-              <Link to="/signup" className="text-accent font-semibold hover:underline">
-                Register here
+              Forgot your password?{' '}
+              <Link to="/forget-password" className="text-accent font-semibold hover:underline">
+                Reset it here
               </Link>
             </p>
             <div className="text-center mt-3">
