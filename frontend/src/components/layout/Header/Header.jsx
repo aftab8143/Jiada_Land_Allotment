@@ -1,14 +1,25 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import jharLogo from '../../../assets/images/jharlogo.png';
+import * as AuthApi from '../../../api/auth';
 
 const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/');
+
+  const handleLogout = async () => {
+    try {
+      const { data } = await AuthApi.logout();
+
+      alert(data.message);
+
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+    } finally {
+      logout();
+      navigate("/login", { replace: true });
+    }
   };
 
   return (

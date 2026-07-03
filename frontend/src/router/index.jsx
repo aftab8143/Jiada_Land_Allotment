@@ -46,6 +46,7 @@ import Renewal from '../pages/PostAllotment/Renewal';
 
 import Showcase from '../pages/Showcase';
 import UIDemo from '../pages/UIDemo';
+import AdminDashboard from '../pages/Dashboard/AdminDashboard';
 
 const PrivateRoute = ({ children }) => {
   const { user } = useAuth();
@@ -60,7 +61,7 @@ const AppRoutes = () => (
     <Route path="/signup" element={<RegisterPage />} />
 
     {/* Authenticated */}
-    <Route path="/dashboard" element={<PrivateRoute><ApplicantDashboard /></PrivateRoute>} />
+    <Route path="/dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
     <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
 
     <Route path="/land-bank" element={<PrivateRoute><PlotSearch /></PrivateRoute>} />
