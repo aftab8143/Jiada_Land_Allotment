@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+import InteractiveGlassCard from '../../../../components/ui/InteractiveGlassCard';
+
 const services = [
   { icon: '🏭', title: 'Land Bank', desc: 'Browse available industrial plots across Jharkhand by zone, size, and category.' },
   { icon: '📝', title: 'Online Applications', desc: 'Apply for land allotment fully digitally, track status in real time.' },
@@ -15,8 +18,18 @@ const announcements = [
 
 const quickLinks = ['Land Bank Map', 'Application Status', 'Bid Events', 'Payment Portal', 'Grievance Portal'];
 
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+};
+
 const CardGrid = () => (
-  <section className="py-20 bg-bg" id="services">
+  <section className="py-20" id="services">
     {/* Section header */}
     <div className="text-center mb-12 px-8">
       <h2 className="text-3xl font-bold text-primary mb-3">Our Services</h2>
@@ -26,28 +39,39 @@ const CardGrid = () => (
     </div>
 
     {/* Services grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-8 mb-12">
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-8 mb-12"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       {services.map((s) => (
-        <div
-          key={s.title}
-          className="bg-white rounded-2xl p-6 border border-border shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
-        >
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 bg-accent/10">
-            {s.icon}
-          </div>
-          <h3 className="font-bold text-gray-900 mb-2">{s.title}</h3>
-          <p className="text-sm text-gray-500 leading-relaxed mb-4">{s.desc}</p>
-          <button className="text-sm font-semibold text-primary hover:text-primary-dark transition-colors">
-            Know More &rarr;
-          </button>
-        </div>
+        <motion.div key={s.title} variants={item}>
+          <InteractiveGlassCard className="glass hover:bg-white/60 rounded-2xl p-6 transition-colors duration-200">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 bg-accent/10">
+              {s.icon}
+            </div>
+            <h3 className="font-bold text-gray-900 mb-2">{s.title}</h3>
+            <p className="text-sm text-gray-500 leading-relaxed mb-4">{s.desc}</p>
+            <button className="text-sm font-semibold text-primary hover:text-primary-dark transition-colors">
+              Know More &rarr;
+            </button>
+          </InteractiveGlassCard>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
 
     {/* Info boxes */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-8">
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-8"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       {/* Announcements */}
-      <div className="bg-white rounded-2xl border border-border shadow-sm p-5">
+      <motion.div variants={item} className="glass rounded-2xl p-5">
         <div className="flex items-center gap-2 font-bold text-gray-800 mb-4">
           <span className="w-3 h-3 rounded-full bg-accent shrink-0" />
           Latest Announcements
@@ -60,10 +84,10 @@ const CardGrid = () => (
             </li>
           ))}
         </ul>
-      </div>
+      </motion.div>
 
       {/* Quick Links */}
-      <div className="bg-white rounded-2xl border border-border shadow-sm p-5">
+      <motion.div variants={item} className="glass rounded-2xl p-5">
         <div className="flex items-center gap-2 font-bold text-gray-800 mb-4">
           <span className="w-3 h-3 rounded-full bg-gov-green shrink-0" />
           Quick Links
@@ -75,10 +99,10 @@ const CardGrid = () => (
             </li>
           ))}
         </ul>
-      </div>
+      </motion.div>
 
       {/* Helpline */}
-      <div className="bg-white rounded-2xl border border-border shadow-sm p-5">
+      <motion.div variants={item} className="glass rounded-2xl p-5">
         <div className="flex items-center gap-2 font-bold text-gray-800 mb-4">
           <span className="w-3 h-3 rounded-full bg-primary shrink-0" />
           Helpline
@@ -91,8 +115,8 @@ const CardGrid = () => (
             For queries about plot allotment, application status, or any JIADA service, contact our helpline.
           </p>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   </section>
 );
 

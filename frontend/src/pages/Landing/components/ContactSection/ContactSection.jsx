@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const contactItems = [
   { icon: '📞', label: 'Helpline', lines: ['1800-345-6789 (Toll Free)', 'Mon–Sat, 9AM–6PM'] },
@@ -7,7 +8,7 @@ const contactItems = [
 ];
 
 const inputClass =
-  'w-full px-4 py-2.5 border border-border-strong rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 bg-white transition-all';
+  'w-full px-4 py-2.5 border border-border-strong rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 bg-white/40 backdrop-blur-sm focus:bg-white/70 transition-all';
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -22,7 +23,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 bg-bg" id="contact">
+    <section className="py-20" id="contact">
       <div className="max-w-4xl mx-auto px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -35,7 +36,12 @@ const ContactSection = () => {
 
         <div className="grid md:grid-cols-2 gap-10">
           {/* Left: Contact info */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
               Our team is available Monday–Saturday for all inquiries. You can reach us via phone, email, or visit our head office in Ranchi.
             </p>
@@ -52,10 +58,16 @@ const ContactSection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: Form */}
-          <div className="bg-white rounded-2xl border border-border shadow-sm p-6">
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="glass-strong rounded-2xl p-6"
+          >
             <div className="font-bold text-gray-900 mb-5">Send a Message</div>
             {submitted ? (
               <div className="flex flex-col items-center gap-3 py-8 text-center">
@@ -120,15 +132,17 @@ const ContactSection = () => {
                     className={`${inputClass} min-h-[120px] resize-y`}
                   />
                 </div>
-                <button
+                <motion.button
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
                   type="submit"
                   className="w-full bg-primary text-white rounded-full py-3 font-bold text-sm hover:bg-primary-dark transition-colors mt-1"
                 >
                   Submit Message
-                </button>
+                </motion.button>
               </form>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

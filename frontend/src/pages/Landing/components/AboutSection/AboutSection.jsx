@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const features = [
   'Government of Jharkhand initiative',
   'Single-window clearance',
@@ -13,10 +15,15 @@ const pillars = [
 ];
 
 const AboutSection = () => (
-  <section className="py-20 bg-white" id="about">
+  <section className="py-20" id="about">
     <div className="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center">
       {/* Left: Text content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: -32 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <div className="text-xs font-bold text-accent uppercase tracking-widest mb-3">About JIADA</div>
         <h2 className="text-3xl font-bold text-primary mb-4">
           Empowering Industrial Growth in Jharkhand
@@ -31,7 +38,7 @@ const AboutSection = () => (
         {/* Feature list */}
         <div className="flex flex-col gap-3">
           {features.map((f) => (
-            <div key={f} className="flex items-center gap-3 text-sm text-gray-700">
+            <div key={f} className="glass flex items-center gap-3 text-sm text-gray-700 rounded-xl px-4 py-2.5">
               <span className="w-5 h-5 rounded-full bg-green-100 text-gov-green flex items-center justify-center text-xs font-bold shrink-0">
                 ✓
               </span>
@@ -39,17 +46,23 @@ const AboutSection = () => (
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Right: Visual card */}
-      <div className="bg-gradient-to-br from-primary to-primary-light rounded-2xl p-8 text-white text-center">
+      <motion.div
+        initial={{ opacity: 0, x: 32 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="bg-gradient-to-br from-primary to-primary-light rounded-2xl p-8 text-white text-center shadow-xl"
+      >
         <div className="text-6xl font-black text-accent mb-2">25+</div>
         <div className="text-base font-semibold mb-8 text-blue-200">Years of Industrial Development</div>
 
         {/* 2x2 stat grid */}
         <div className="grid grid-cols-2 gap-4">
           {pillars.map((p) => (
-            <div key={p.title} className="bg-white/10 rounded-xl p-4 text-center">
+            <div key={p.title} className="glass-dark rounded-xl p-4 text-center">
               <div className="text-2xl mb-1">{p.icon}</div>
               <div className="text-sm font-bold text-white">{p.title}</div>
               <div className="text-xs text-blue-200 mt-1 leading-snug">{p.desc}</div>
@@ -72,7 +85,7 @@ const AboutSection = () => (
             <div className="text-xs text-blue-200">User Roles</div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
 );

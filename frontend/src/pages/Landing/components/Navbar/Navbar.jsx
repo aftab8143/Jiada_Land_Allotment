@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../../../../context/AuthContext';
 import jharLogo from '../../../../assets/images/jharlogo.png';
 
@@ -14,7 +15,12 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <motion.header
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="glass-strong sticky top-0 z-50"
+    >
       <div className="tricolor-stripe" />
       <nav className="flex items-center justify-between px-8 py-3 max-w-7xl mx-auto">
         {/* Logo */}
@@ -81,32 +87,40 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white border-t border-border px-8 py-4 flex flex-col gap-3 text-sm font-medium text-gray-700">
-          <a href="/#home" onClick={() => setMenuOpen(false)} className="hover:text-primary">Home</a>
-          <a href="/#services" onClick={() => setMenuOpen(false)} className="hover:text-primary">Services</a>
-          <a href="/#about" onClick={() => setMenuOpen(false)} className="hover:text-primary">About</a>
-          <a href="/#contact" onClick={() => setMenuOpen(false)} className="hover:text-primary">Contact</a>
-          {user ? (
-            <>
-              <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="hover:text-primary">Dashboard</Link>
-              <button onClick={handleLogout} className="text-left hover:text-primary">Logout</button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" onClick={() => setMenuOpen(false)} className="hover:text-primary">Login</Link>
-              <Link
-                to="/signup"
-                onClick={() => setMenuOpen(false)}
-                className="px-5 py-2 rounded-full text-center font-bold bg-accent text-white"
-              >
-                Register
-              </Link>
-            </>
-          )}
-        </div>
-      )}
-    </header>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="md:hidden glass-strong border-t border-white/40 px-8 py-4 flex flex-col gap-3 text-sm font-medium text-gray-700 overflow-hidden"
+          >
+            <a href="/#home" onClick={() => setMenuOpen(false)} className="hover:text-primary">Home</a>
+            <a href="/#services" onClick={() => setMenuOpen(false)} className="hover:text-primary">Services</a>
+            <a href="/#about" onClick={() => setMenuOpen(false)} className="hover:text-primary">About</a>
+            <a href="/#contact" onClick={() => setMenuOpen(false)} className="hover:text-primary">Contact</a>
+            {user ? (
+              <>
+                <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="hover:text-primary">Dashboard</Link>
+                <button onClick={handleLogout} className="text-left hover:text-primary">Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)} className="hover:text-primary">Login</Link>
+                <Link
+                  to="/signup"
+                  onClick={() => setMenuOpen(false)}
+                  className="px-5 py-2 rounded-full text-center font-bold bg-accent text-white"
+                >
+                  Register
+                </Link>
+              </>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

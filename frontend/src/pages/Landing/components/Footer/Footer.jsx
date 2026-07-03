@@ -1,7 +1,7 @@
 import jharLogo from '../../../../assets/images/jharlogo.png';
 
 const Footer = () => (
-  <footer className="bg-[#001a4d] text-[#8aaec9]">
+  <footer className="bg-[#001a4d]/85 backdrop-blur-xl border-t border-white/10 text-[#8aaec9]">
     {/* Top section */}
     <div className="max-w-6xl mx-auto px-8 py-12 grid md:grid-cols-3 gap-8">
       {/* Col 1: Brand */}
