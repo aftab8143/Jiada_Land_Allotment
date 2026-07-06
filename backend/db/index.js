@@ -1,0 +1,40 @@
+import { up as masterTables } from './migrations/001_master_tables.js';
+import { up as userTables } from './migrations/002_user_tables.js';
+import { up as applicationTables } from './migrations/003_application_tables.js';
+import { up as workflowTables } from './migrations/004_workflow_tables.js';
+import { up as paymentBiddingTables } from './migrations/005_payment_bidding_tables.js';
+import { up as enterpriseIndexesAndSeeds }   from './migrations/006_enterprise_indexes_and_seeds.js';
+import { up as constitutionIndexAndSeed }      from './migrations/007_constitution_index_and_seed.js';
+import { up as natureOfActivityIndexAndSeed }    from './migrations/008_nature_of_activity_index_and_seed.js';
+import { up as financialYears }                from './migrations/009_financial_years.js';
+import { up as defaultUsersSeed }             from './migrations/010_default_users_seed.js';
+import { up as groupsDefaultRole }            from './migrations/011_groups_default_role.js';
+
+const initDB = async () => {
+  console.log('Running database migrations...');
+  await masterTables();
+  console.log('  ✓ Master tables (groups, regions, districts, blocks, industrial areas, enterprise_sectors, enterprise_types)');
+  await userTables();
+  console.log('  ✓ User/auth tables (users, audit_log)');
+  await applicationTables();
+  console.log('  ✓ Application tables (land_notifications, plot_details, industry_application_details, industry_details, industry_documents)');
+  await workflowTables();
+  console.log('  ✓ Workflow tables (apply_services, communications, certificates, service_requests)');
+  await paymentBiddingTables();
+  console.log('  ✓ Payment/bidding tables (allotments, demand_dues, transactions, biddings, advances, balances)');
+  await enterpriseIndexesAndSeeds();
+  console.log('  ✓ Enterprise indexes and seed data (enterprise_sectors, enterprise_types)');
+  await constitutionIndexAndSeed();
+  console.log('  ✓ Constitution index and seed data (constitutions)');
+  await natureOfActivityIndexAndSeed();
+  console.log('  ✓ Nature of activity index and seed data (nature_of_activities)');
+  await financialYears();
+  console.log('  ✓ Financial years seed data (financial_years)');
+  await defaultUsersSeed();
+  console.log('  ✓ Default admin users (System Admin, Jiada Admin)');
+  await groupsDefaultRole();
+  console.log('  ✓ Groups default_role column and seed flags');
+  console.log('Database initialization complete.');
+};
+
+export default initDB;
